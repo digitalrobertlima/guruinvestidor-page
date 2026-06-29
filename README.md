@@ -1,2 +1,2 @@
 # guruinvestidor-page
-a pago for a channel
+a page for a channel
