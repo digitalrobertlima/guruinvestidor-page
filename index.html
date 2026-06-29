@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guru Investidor | O Próximo Nível</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gold-light: #fcf6ba;
+            --gold-mid: #dfa837;
+            --gold-dark: #aa771c;
+            --bg-deep: #030303;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 50% 30%, #15110a 0%, var(--bg-deep) 70%),
+                url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
+            color: #f4f4f5;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Avatar com Anel Orgânico Pulsante */
+        .brand-header {
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .avatar-ring {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+            margin: 0 auto 20px auto;
+            position: relative;
+            box-shadow: 0 0 30px rgba(223, 168, 55, 0.15);
+            animation: breathe 4s ease-in-out infinite alternate;
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-deep);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-icon {
+            background: linear-gradient(to bottom right, var(--gold-light), var(--gold-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 34px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .brand-subtitle {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--gold-mid), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        /* Pílulas Narrativas com Text-Wrap Balance para estética editorial */
+        .narrative-sequence {
+            width: 100%;
+            margin-bottom: 48px;
+        }
+
+        .pill {
+            opacity: 0;
+            margin-bottom: 32px;
+            position: relative;
+            padding: 0 12px;
+        }
+
+        .pill:nth-child(1) { animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 0.8s; }
+        .pill:nth-child(2) { animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 2.2s; }
+        .pill:nth-child(3) { animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: 3.8s; }
+
+        .pill-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #a1a1aa; /* Cinza mais sofisticado */
+            font-weight: 300;
+            text-wrap: balance; /* Garante alinhamento visual perfeito nas bordas */
+        }
+
+        .pill-text strong {
+            color: #e4e4e7;
+            font-weight: 600;
+        }
+
+        /* Destaque Metálico para o Core da Mensagem */
+        .highlight-gold {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 15px;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .pill::after {
+            content: "";
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 1px;
+            background: rgba(223, 168, 55, 0.3);
+        }
+        .pill:last-child::after { display: none; }
+
+        /* Botão Magnético e Industrial */
+        .cta-wrapper {
+            width: 100%;
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 5.2s;
+            padding: 0 16px;
+        }
+
+        .btn-action {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px 32px;
+            background: rgba(10, 8, 5, 0.6);
+            border: 1px solid rgba(223, 168, 55, 0.4);
+            color: var(--gold-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-action::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(252, 246, 186, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn-action:hover {
+            border-color: var(--gold-light);
+            box-shadow: 0 0 40px rgba(223, 168, 55, 0.2);
+            text-shadow: 0 0 8px rgba(252, 246, 186, 0.5);
+        }
+
+        .btn-action:hover::before {
+            left: 100%;
+        }
+
+        .footer-sig {
+            margin-top: 56px;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #333;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 6s;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); filter: blur(2px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes breathe {
+            0% { box-shadow: 0 0 15px rgba(223, 168, 55, 0.1); }
+            100% { box-shadow: 0 0 35px rgba(223, 168, 55, 0.25); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="brand-header">
+            <div class="avatar-ring">
+                <div class="avatar-inner">
+                    <span class="avatar-icon">G</span>
+                </div>
+            </div>
+            <h1 class="brand-title">Guru Investidor</h1>
+            <p class="brand-subtitle">Conhecimento Sem Mistério</p>
+        </header>
+
+        <main class="narrative-sequence">
+            <div class="pill">
+                <p class="pill-text">
+                    A ilusão do lucro rápido é uma fachada. Ela financia o <strong>sistema</strong>, não o seu futuro.
+                </p>
+            </div>
+
+            <div class="pill">
+                <p class="pill-text">
+                    A verdadeira construção de riqueza exige uma fundação sólida: uma estratégia <span class="highlight-gold">sistêmica</span> e <span class="highlight-gold">autônoma</span>. Valor real, forjado todos os dias.
+                </p>
+            </div>
+
+            <div class="pill">
+                <p class="pill-text">
+                    A porta está aberta. Mas o próximo nível <strong>não aceita turistas</strong>.
+                </p>
+            </div>
+        </main>
+
+        <div class="cta-wrapper">
+            <button class="btn-action" onclick="redirectTomajesty()">
+                Decifrar o Mercado com o Guru
+            </button>
+        </div>
+
+        <footer class="footer-sig">
+            &copy; RDESK DESIGN
+        </footer>
+
+    </div>
+
+    <script>
+        function redirectTomajesty() {
+            // Utilizando o handle exato fornecido
+            const handle = "@guruinvestidorbrasil";
+            
+            // Fallback para Web com auto-inscrição
+            const webFallbackUrl = `https://www.youtube.com/${handle}?sub_confirmation=1`;
+            
+            // Deep links para iOS e Android
+            const iosAppUrl = `youtube://www.youtube.com/${handle}`;
+            const androidIntent = `intent://www.youtube.com/${handle}#Intent;package=com.google.android.youtube;scheme=https;end`;
+
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const isAndroid = /android/i.test(userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+            const triggerTime = Date.now();
+
+            if (isIOS) {
+                window.location.href = iosAppUrl;
+                setTimeout(() => {
+                    if (Date.now() - triggerTime < 1500) {
+                        window.location.href = webFallbackUrl;
+                    }
+                }, 1200);
+            } else if (isAndroid) {
+                window.location.href = androidIntent;
+            } else {
+                window.open(webFallbackUrl, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
